@@ -153,10 +153,10 @@
     .tile.orange { color: #e06010; }
     .tile.black  { color: #222; }
     .tile.joker  {
-      background: linear-gradient(135deg, #f7c948, #e03050, #5080f0, #3ab86e);
-      color: #fff;
-      font-size: 1.6rem;
+      background: transparent;
       border: none;
+      padding: 0;
+      overflow: hidden;
     }
 
     /* ── Section headings ── */
@@ -349,7 +349,6 @@
           <div class="mini-tile red">4</div>
           <div class="mini-tile red">5</div>
           <div class="mini-tile red">6</div>
-          <div class="mini-tile red">7</div>
         </div>
       </div>
 
@@ -360,7 +359,6 @@
           <div class="mini-tile blue">7</div>
           <div class="mini-tile red">7</div>
           <div class="mini-tile black">7</div>
-          <div class="mini-tile orange">7</div>
         </div>
       </div>
 
@@ -443,7 +441,12 @@
     strip.appendChild(t);
   });
   const joker = document.createElement('div');
-  joker.className = 'tile joker'; joker.textContent = '★';
+  joker.className = 'tile joker';
+  const jokerImg = document.createElement('img');
+  jokerImg.src = 'joker.png';
+  jokerImg.alt = 'Joker';
+  jokerImg.style.cssText = 'width:100%;height:100%;object-fit:cover;transform:scale(1.2);';
+  joker.appendChild(jokerImg);
   strip.appendChild(joker);
 
   // ── Translations ──────────────────────────────────────────────────────────
