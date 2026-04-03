@@ -207,6 +207,7 @@
       flex-shrink: 0;
     }
 
+    .badge-goal   { background: #f0e6ff; color: #6a1fbf; border: 1px solid #c8a0f0; }
     .badge-run    { background: #deeaff; color: #1a4f9c; border: 1px solid #b0c8f0; }
     .badge-group  { background: #ffe0e0; color: #b02020; border: 1px solid #f0b0b0; }
     .badge-start  { background: #d8f5e4; color: #1a7a40; border: 1px solid #a0dbb8; }
@@ -249,6 +250,25 @@
     .mini-tile.blue   { color: #1a5bbf; }
     .mini-tile.orange { color: #e06010; }
     .mini-tile.black  { color: #222; }
+
+    .mini-tile-sm {
+      width: 24px;
+      height: 32px;
+      border-radius: 4px;
+      background: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      font-weight: 900;
+      box-shadow: 0 2px 0 rgba(0,0,0,0.18);
+      border: 1.5px solid rgba(0,0,0,0.10);
+    }
+
+    .mini-tile-sm.red    { color: #d72b2b; }
+    .mini-tile-sm.blue   { color: #1a5bbf; }
+    .mini-tile-sm.orange { color: #e06010; }
+    .mini-tile-sm.black  { color: #222; }
 
     /* ── Photo gallery ── */
     .gallery-heading {
@@ -341,6 +361,21 @@
     <!-- Standard Rules -->
     <h2 class="section-heading" data-i18n="std-heading"></h2>
     <div class="cards">
+
+      <div class="card">
+        <h2><span class="badge badge-goal" data-i18n="badge-goal"></span> <span data-i18n="goal-title"></span></h2>
+        <p class="rule-text" data-i18n="goal-text"></p>
+        <div class="example" style="flex-direction:column;gap:6px;align-items:flex-start;">
+          <div style="display:flex;gap:4px;">
+            <div class="mini-tile-sm red">1</div><div class="mini-tile-sm red">6</div><div class="mini-tile-sm red">10</div><div class="mini-tile-sm red">13</div>
+            <div class="mini-tile-sm blue" style="margin-left:6px;">2</div><div class="mini-tile-sm blue">7</div><div class="mini-tile-sm blue">11</div>
+          </div>
+          <div style="display:flex;gap:4px;">
+            <div class="mini-tile-sm orange">3</div><div class="mini-tile-sm orange">8</div><div class="mini-tile-sm orange">12</div>
+            <div class="mini-tile-sm black" style="margin-left:6px;">4</div><div class="mini-tile-sm black">5</div><div class="mini-tile-sm black">9</div><div class="mini-tile-sm black">11</div>
+          </div>
+        </div>
+      </div>
 
       <div class="card">
         <h2><span class="badge badge-run" data-i18n="badge-run"></span> <span data-i18n="run-title"></span></h2>
@@ -456,6 +491,9 @@
       'std-heading':     'Standard Rules 🇨🇭',
       'mini-heading':    'MINI Rules ☕️',
       'gallery-heading': 'Game Night 📸',
+      'badge-goal':      'Goal',
+      'goal-title':      'Be the first to get rid of all your tiles.',
+      'goal-text':       'At the start, pick 14 tiles randomly.',
       'badge-run':       'Run',
       'badge-group':     'Group',
       'badge-start':     'First play',
@@ -485,6 +523,9 @@
       'std-heading':     'Standardregeln 🇨🇭',
       'mini-heading':    'MINI-Regeln ☕️',
       'gallery-heading': 'Spielabend 📸',
+      'badge-goal':      'Ziel',
+      'goal-title':      'Als Erster alle Steine loswerden.',
+      'goal-text':       'Zu Beginn 14 Steine zufällig ziehen.',
       'badge-run':       'Folge',
       'badge-group':     'Gruppe',
       'badge-start':     'Erster Zug',
@@ -514,6 +555,9 @@
       'std-heading':     'Alap szabályok 🇨🇭',
       'mini-heading':    'MINI szabályok ☕️',
       'gallery-heading': 'Játékest 📸',
+      'badge-goal':      'Cél',
+      'goal-title':      'Legyél az első, aki megszabadul az összes kövétől.',
+      'goal-text':       'Kezdéskor húzz véletlenszerűen 14 követ.',
       'badge-run':       'Sorozat',
       'badge-group':     'Csoport',
       'badge-start':     'Első lépés',
@@ -543,6 +587,9 @@
       'std-heading':     'Zasady standardowe 🇨🇭',
       'mini-heading':    'Zasady MINI ☕️',
       'gallery-heading': 'Wieczór gier 📸',
+      'badge-goal':      'Cel',
+      'goal-title':      'Bądź pierwszym, który pozbędzie się wszystkich kamieni.',
+      'goal-text':       'Na początku losowo wybierz 14 kamieni.',
       'badge-run':       'Sekwencja',
       'badge-group':     'Grupa',
       'badge-start':     'Pierwsze wyjście',
