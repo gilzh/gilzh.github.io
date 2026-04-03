@@ -9,13 +9,14 @@
   <link rel="icon" type="image/png" href="joker.png">
 
   <!-- WhatsApp / Open Graph preview -->
-  <meta property="og:type"        content="website">
-  <meta property="og:url"         content="https://gilzh.github.io/rummikub/">
-  <meta property="og:title"       content="Rummikub – Zürich 🎲">
-  <meta property="og:description" content="Rules, MINI rules & game night photos. Join us every 2 weeks at Mini Café Bar, Bleicherweg 62!">
-  <meta property="og:image"       content="https://gilzh.github.io/rummikub/IMG_9545.jpeg">
+  <meta property="og:type"         content="website">
+  <meta property="og:url"          content="https://gilzh.github.io/rummikub/">
+  <meta property="og:title"        content="Rummikub – Zürich 🎲">
+  <meta property="og:description"  content="Rules, MINI rules & game night photos. Join us every 2 weeks at Mini Café Bar, Bleicherweg 62!">
+  <meta property="og:image"        content="https://gilzh.github.io/rummikub/IMG_9545.jpeg">
   <meta property="og:image:width"  content="1200">
   <meta property="og:image:height" content="900">
+
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -24,8 +25,39 @@
       background: #f5f0e8;
       color: #2c2c2c;
       min-height: 100vh;
-      padding: 24px 300px 48px 24px;
+      padding: 0 300px 48px 24px;
     }
+
+    /* ── Language bar ── */
+    .lang-bar {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 16px;
+      background: #fff;
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+      position: sticky;
+      top: 0;
+      z-index: 200;
+    }
+
+    .lang-btn {
+      font-size: 1.6rem;
+      background: none;
+      border: 2px solid transparent;
+      border-radius: 8px;
+      padding: 4px 8px;
+      cursor: pointer;
+      line-height: 1;
+      transition: border-color 0.15s, background 0.15s;
+      user-select: none;
+    }
+
+    .lang-btn:hover    { background: #f0ebe0; }
+    .lang-btn.active   { border-color: #c8880a; background: #fdf3dc; }
+
+    /* ── Main content top padding ── */
+    .page-content { padding-top: 24px; }
 
     h1 {
       text-align: center;
@@ -48,7 +80,7 @@
     /* ── Meetup card ── */
     .meetup {
       position: fixed;
-      top: 20px;
+      top: 52px; /* below sticky lang bar */
       right: 20px;
       width: 260px;
       z-index: 100;
@@ -273,166 +305,292 @@
 
     /* ── Mobile ── */
     @media (max-width: 768px) {
-      body {
-        padding: 16px 16px 48px;
-      }
+      body { padding: 0 16px 48px; }
 
       h1 { font-size: 2rem; }
 
-      /* Meetup becomes a normal inline banner at the top */
       .meetup {
         position: static;
         width: 100%;
         margin-bottom: 28px;
+        top: auto;
       }
 
-      .cards {
-        grid-template-columns: 1fr;
-      }
+      .cards { grid-template-columns: 1fr; }
 
-      .gallery {
-        grid-template-columns: 1fr;
-      }
+      .gallery { grid-template-columns: 1fr; }
 
-      .tile {
-        width: 44px;
-        height: 58px;
-        font-size: 1.2rem;
-      }
+      .tile { width: 44px; height: 58px; font-size: 1.2rem; }
     }
 
-    /* ── Tablet: 2-col gallery, tighter padding ── */
+    /* ── Tablet ── */
     @media (min-width: 769px) and (max-width: 1100px) {
-      body { padding: 24px 290px 48px 20px; }
-
+      body { padding: 0 290px 48px 20px; }
       .gallery { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
 <body>
 
-  <!-- Fixed meetup card -->
-  <div class="meetup">
-    <div class="meetup-title">Rummikub Zürich Meet-up 🇨🇭</div>
-    <p>Do you love Rummikub — or have you always wanted to learn? Join Zürich's new group for relaxed, friendly game nights! Everyone welcome — beginners, families, friends.</p>
-    <p>📅 Every 2 weeks<br>
-       📍 Mini Café Bar, Bleicherweg 62, 8001 Zürich<br>
-       🎯 Build a warm community — and maybe later, fun mini tournaments!</p>
-    <p>Bring your own set, or just come with curiosity and a smile.</p>
-    <a href="https://www.meetup.com/zurich-rummikub-meetup-group/?eventOrigin=home_groups_you_are_in" target="_blank">Join on Meetup →</a>
+  <!-- Language bar -->
+  <div class="lang-bar">
+    <button class="lang-btn active" onclick="setLang('en')" title="English">🇬🇧</button>
+    <button class="lang-btn"        onclick="setLang('de')" title="Deutsch">🇩🇪</button>
+    <button class="lang-btn"        onclick="setLang('hu')" title="Magyar">🇭🇺</button>
+    <button class="lang-btn"        onclick="setLang('pl')" title="Polski">🇵🇱</button>
   </div>
 
-  <!-- Header -->
-  <h1>🎲 RUMMIKUB</h1>
-  <p class="subtitle">Quick rules reference</p>
+  <div class="page-content">
 
-  <!-- Tile strip -->
-  <div class="tile-strip" id="tileStrip"></div>
+    <!-- Fixed meetup card -->
+    <div class="meetup">
+      <div class="meetup-title"     data-i18n="meetup-title"></div>
+      <p data-i18n-html="meetup-p1"></p>
+      <p data-i18n-html="meetup-p2"></p>
+      <p data-i18n="meetup-p3"></p>
+      <a href="https://www.meetup.com/zurich-rummikub-meetup-group/?eventOrigin=home_groups_you_are_in"
+         target="_blank" data-i18n="meetup-link"></a>
+    </div>
 
-  <!-- Standard Rules -->
-  <h2 class="section-heading">Standard Rules 🇨🇭</h2>
-  <div class="cards">
+    <!-- Header -->
+    <h1>🎲 RUMMIKUB</h1>
+    <p class="subtitle" data-i18n="subtitle"></p>
 
-    <div class="card">
-      <h2><span class="badge badge-run">Run</span> Same color, consecutive</h2>
-      <p class="rule-text">3 or more numbers <strong>in a row of the same color</strong>.</p>
-      <div class="example">
-        <div class="mini-tile red">4</div>
-        <div class="mini-tile red">5</div>
-        <div class="mini-tile red">6</div>
-        <div class="mini-tile red">7</div>
+    <!-- Tile strip -->
+    <div class="tile-strip" id="tileStrip"></div>
+
+    <!-- Standard Rules -->
+    <h2 class="section-heading" data-i18n="std-heading"></h2>
+    <div class="cards">
+
+      <div class="card">
+        <h2><span class="badge badge-run" data-i18n="badge-run"></span> <span data-i18n="run-title"></span></h2>
+        <p class="rule-text" data-i18n-html="run-text"></p>
+        <div class="example">
+          <div class="mini-tile red">4</div>
+          <div class="mini-tile red">5</div>
+          <div class="mini-tile red">6</div>
+          <div class="mini-tile red">7</div>
+        </div>
       </div>
-    </div>
 
-    <div class="card">
-      <h2><span class="badge badge-group">Group</span> Same number, different colors</h2>
-      <p class="rule-text">3 or 4 tiles with the <strong>same number but different colors</strong>.</p>
-      <div class="example">
-        <div class="mini-tile blue">7</div>
-        <div class="mini-tile red">7</div>
-        <div class="mini-tile black">7</div>
-        <div class="mini-tile orange">7</div>
+      <div class="card">
+        <h2><span class="badge badge-group" data-i18n="badge-group"></span> <span data-i18n="group-title"></span></h2>
+        <p class="rule-text" data-i18n-html="group-text"></p>
+        <div class="example">
+          <div class="mini-tile blue">7</div>
+          <div class="mini-tile red">7</div>
+          <div class="mini-tile black">7</div>
+          <div class="mini-tile orange">7</div>
+        </div>
       </div>
-    </div>
 
-    <div class="card">
-      <h2><span class="badge badge-start">First play</span> 30-point minimum</h2>
-      <p class="rule-text">On your <strong>very first turn</strong>, you must play tiles totalling <strong>at least 30 points</strong> using only tiles from your own rack.</p>
-      <div class="example">
-        <div class="mini-tile orange">10</div>
-        <div class="mini-tile red">10</div>
-        <div class="mini-tile black">10</div>
-        <span style="color:#999; font-size:0.9rem;">= 30 ✓</span>
+      <div class="card">
+        <h2><span class="badge badge-start" data-i18n="badge-start"></span> <span data-i18n="first-title"></span></h2>
+        <p class="rule-text" data-i18n-html="first-text"></p>
+        <div class="example">
+          <div class="mini-tile orange">10</div>
+          <div class="mini-tile red">10</div>
+          <div class="mini-tile black">10</div>
+          <span style="color:#999; font-size:0.9rem;">= 30 ✓</span>
+        </div>
       </div>
+
     </div>
 
-  </div>
+    <!-- MINI Rules -->
+    <h2 class="section-heading" data-i18n="mini-heading"></h2>
+    <div class="cards">
 
-  <!-- MINI Rules -->
-  <h2 class="section-heading">MINI Rules ☕️</h2>
-  <div class="cards">
-
-    <div class="card card-mini">
-      <h2><span class="badge badge-mini">1</span> The Fast Rule</h2>
-      <p class="rule-text">You may <strong>immediately play a tile you just picked</strong> from the pile.</p>
-    </div>
-
-    <div class="card card-mini">
-      <h2><span class="badge badge-mini">2</span> The Double Rule</h2>
-      <p class="rule-text">At the <strong>start of a game</strong>, you may announce your doubles and <strong>swap them with other players</strong>.</p>
-    </div>
-
-    <div class="card card-mini">
-      <h2><span class="badge badge-mini">3</span> The Payback Rule</h2>
-      <p class="rule-text">If you <strong>provide 2 tiles to a group of 3</strong>, you may give any tile from the board to any player — provided you don't break any rule. That player <strong>cannot immediately replace</strong> that tile where it was.</p>
-    </div>
-
-    <div class="card card-mini">
-      <h2><span class="badge badge-mini">4</span> The Odd Rule</h2>
-      <p class="rule-text"><strong>Once per game</strong>, you may place a run of <strong>odds</strong> (e.g. 3–5–7) or <strong>evens</strong> (e.g. 6–8–10).</p>
-      <div class="example">
-        <div class="mini-tile red">3</div>
-        <div class="mini-tile red">5</div>
-        <div class="mini-tile red">7</div>
+      <div class="card card-mini">
+        <h2><span class="badge badge-mini">1</span> <span data-i18n="mini1-title"></span></h2>
+        <p class="rule-text" data-i18n-html="mini1-text"></p>
       </div>
+
+      <div class="card card-mini">
+        <h2><span class="badge badge-mini">2</span> <span data-i18n="mini2-title"></span></h2>
+        <p class="rule-text" data-i18n-html="mini2-text"></p>
+      </div>
+
+      <div class="card card-mini">
+        <h2><span class="badge badge-mini">3</span> <span data-i18n="mini3-title"></span></h2>
+        <p class="rule-text" data-i18n-html="mini3-text"></p>
+      </div>
+
+      <div class="card card-mini">
+        <h2><span class="badge badge-mini">4</span> <span data-i18n="mini4-title"></span></h2>
+        <p class="rule-text" data-i18n-html="mini4-text"></p>
+        <div class="example">
+          <div class="mini-tile red">3</div>
+          <div class="mini-tile red">5</div>
+          <div class="mini-tile red">7</div>
+        </div>
+      </div>
+
     </div>
 
-  </div>
+    <!-- Photo gallery -->
+    <h2 class="gallery-heading" data-i18n="gallery-heading"></h2>
+    <div class="gallery">
+      <a href="IMG_9545.jpeg" target="_blank"><img src="IMG_9545.jpeg" alt="Game night photo 1"></a>
+      <a href="IMG_9544.jpeg" target="_blank"><img src="IMG_9544.jpeg" alt="Game night photo 2"></a>
+      <a href="IMG_9543.jpeg" target="_blank"><img src="IMG_9543.jpeg" alt="Game night photo 3"></a>
+    </div>
 
-  <!-- Photo gallery -->
-  <h2 class="gallery-heading">Game Night 📸</h2>
-  <div class="gallery">
-    <a href="IMG_9545.jpeg" target="_blank">
-      <img src="IMG_9545.jpeg" alt="Rummikub game night photo 1">
-    </a>
-    <a href="IMG_9544.jpeg" target="_blank">
-      <img src="IMG_9544.jpeg" alt="Rummikub game night photo 2">
-    </a>
-    <a href="IMG_9543.jpeg" target="_blank">
-      <img src="IMG_9543.jpeg" alt="Rummikub game night photo 3">
-    </a>
-  </div>
+    <footer>
+      <span data-i18n="footer-text"></span> <a href="https://rummikub.com/play-online/" target="_blank">rummikub.com</a>
+    </footer>
 
-  <footer>
-    Play online at <a href="https://rummikub.com/play-online/" target="_blank">rummikub.com</a>
-  </footer>
+  </div><!-- end page-content -->
 
 <script>
+  // ── Tile strip ────────────────────────────────────────────────────────────
   const COLORS = ['red','blue','orange','black'];
   const strip  = document.getElementById('tileStrip');
-  const sample = [5, 9, 13];
-  COLORS.forEach(c => {
-    sample.forEach(n => {
-      const t = document.createElement('div');
-      t.className = `tile ${c}`;
-      t.textContent = n;
-      strip.appendChild(t);
-    });
-  });
+  [5,9,13].forEach(n => COLORS.forEach(c => {
+    const t = document.createElement('div');
+    t.className = `tile ${c}`; t.textContent = n;
+    strip.appendChild(t);
+  }));
   const joker = document.createElement('div');
-  joker.className = 'tile joker';
-  joker.textContent = '★';
+  joker.className = 'tile joker'; joker.textContent = '★';
   strip.appendChild(joker);
+
+  // ── Translations ──────────────────────────────────────────────────────────
+  const T = {
+    en: {
+      'subtitle':        'Quick rules reference',
+      'std-heading':     'Standard Rules 🇨🇭',
+      'mini-heading':    'MINI Rules ☕️',
+      'gallery-heading': 'Game Night 📸',
+      'badge-run':       'Run',
+      'badge-group':     'Group',
+      'badge-start':     'First play',
+      'run-title':       'Same color, consecutive',
+      'run-text':        '3 or more numbers <strong>in a row of the same color</strong>.',
+      'group-title':     'Same number, different colors',
+      'group-text':      '3 or 4 tiles with the <strong>same number but different colors</strong>.',
+      'first-title':     '30-point minimum',
+      'first-text':      'On your <strong>very first turn</strong>, you must play tiles totalling <strong>at least 30 points</strong> using only tiles from your own rack.',
+      'mini1-title':     'The Fast Rule',
+      'mini1-text':      'You may <strong>immediately play a tile you just picked</strong> from the pile.',
+      'mini2-title':     'The Double Rule',
+      'mini2-text':      'At the <strong>start of a game</strong>, you may announce your doubles and <strong>swap them with other players</strong>.',
+      'mini3-title':     'The Payback Rule',
+      'mini3-text':      'If you <strong>provide 2 tiles to a group of 3</strong>, you may give any tile from the board to any player — provided you don\'t break any rule. That player <strong>cannot immediately replace</strong> that tile where it was.',
+      'mini4-title':     'The Odd Rule',
+      'mini4-text':      '<strong>Once per game</strong>, you may place a run of <strong>odds</strong> (e.g. 3–5–7) or <strong>evens</strong> (e.g. 6–8–10).',
+      'meetup-title':    'Rummikub Zürich Meet-up 🇨🇭',
+      'meetup-p1':       'Do you love Rummikub — or have you always wanted to learn? Join Zürich\'s new group for relaxed, friendly game nights! Everyone welcome — beginners, families, friends.',
+      'meetup-p2':       '📅 Every 2 weeks<br>📍 Mini Café Bar, Bleicherweg 62, 8001 Zürich<br>🎯 Build a warm community — and maybe later, fun mini tournaments!',
+      'meetup-p3':       'Bring your own set, or just come with curiosity and a smile.',
+      'meetup-link':     'Join on Meetup →',
+      'footer-text':     'Play online at',
+    },
+    de: {
+      'subtitle':        'Schnelle Regelübersicht',
+      'std-heading':     'Standardregeln 🇨🇭',
+      'mini-heading':    'MINI-Regeln ☕️',
+      'gallery-heading': 'Spielabend 📸',
+      'badge-run':       'Folge',
+      'badge-group':     'Gruppe',
+      'badge-start':     'Erster Zug',
+      'run-title':       'Gleiche Farbe, aufeinanderfolgend',
+      'run-text':        '3 oder mehr Zahlen <strong>aufeinanderfolgend in derselben Farbe</strong>.',
+      'group-title':     'Gleiche Zahl, verschiedene Farben',
+      'group-text':      '3 oder 4 Steine mit <strong>derselben Zahl, aber unterschiedlichen Farben</strong>.',
+      'first-title':     '30-Punkte-Minimum',
+      'first-text':      'Im <strong>allerersten Zug</strong> musst du Steine im Wert von <strong>mindestens 30 Punkten</strong> aus deiner eigenen Hand legen.',
+      'mini1-title':     'Die Schnell-Regel',
+      'mini1-text':      'Du darfst einen <strong>gerade gezogenen Stein sofort</strong> ausspielen.',
+      'mini2-title':     'Die Doppel-Regel',
+      'mini2-text':      'Zu <strong>Spielbeginn</strong> kannst du deine Doppelsteine ankündigen und <strong>mit anderen Spielern tauschen</strong>.',
+      'mini3-title':     'Die Rückgabe-Regel',
+      'mini3-text':      'Wenn du <strong>2 Steine zu einer Dreiergruppe beisteuert</strong>, darfst du jedem Spieler einen Stein vom Tisch geben – solange keine Regel verletzt wird. Dieser Spieler darf den Stein <strong>nicht sofort zurücklegen</strong>.',
+      'mini4-title':     'Die Ungerade-Regel',
+      'mini4-text':      '<strong>Einmal pro Spiel</strong> darfst du eine Folge aus <strong>ungeraden</strong> (z.B. 3–5–7) oder <strong>geraden</strong> Zahlen (z.B. 6–8–10) legen.',
+      'meetup-title':    'Rummikub Zürich Treffen 🇨🇭',
+      'meetup-p1':       'Liebst du Rummikub – oder wolltest du es schon immer lernen? Komm zu unserem Zürcher Spielabend! Alle willkommen – Anfänger, Familien, Freunde.',
+      'meetup-p2':       '📅 Alle 2 Wochen<br>📍 Mini Café Bar, Bleicherweg 62, 8001 Zürich<br>🎯 Gemeinschaft aufbauen – und vielleicht später kleine Turniere!',
+      'meetup-p3':       'Bring dein Spiel mit, oder komm einfach neugierig und mit einem Lächeln.',
+      'meetup-link':     'Bei Meetup mitmachen →',
+      'footer-text':     'Online spielen auf',
+    },
+    hu: {
+      'subtitle':        'Gyors szabály-összefoglaló',
+      'std-heading':     'Alap szabályok 🇨🇭',
+      'mini-heading':    'MINI szabályok ☕️',
+      'gallery-heading': 'Játékest 📸',
+      'badge-run':       'Sorozat',
+      'badge-group':     'Csoport',
+      'badge-start':     'Első lépés',
+      'run-title':       'Ugyanolyan szín, egymás utáni',
+      'run-text':        '3 vagy több egymás utáni szám <strong>ugyanabban a színben</strong>.',
+      'group-title':     'Ugyanaz a szám, különböző színek',
+      'group-text':      '3 vagy 4 kő <strong>ugyanazzal a számmal, de különböző színekben</strong>.',
+      'first-title':     '30 pontos minimum',
+      'first-text':      'Az <strong>első körödben</strong> legalább <strong>30 pontnyi</strong> követ kell kirakni kizárólag a saját állványodról.',
+      'mini1-title':     'A Gyors szabály',
+      'mini1-text':      'Az <strong>éppen felhúzott követ azonnal</strong> kijátszhatod.',
+      'mini2-title':     'A Dupla szabály',
+      'mini2-text':      'A <strong>játék elején</strong> bejelentheted a dupláidat, és <strong>elcserélheted más játékosokkal</strong>.',
+      'mini3-title':     'A Visszaadás szabály',
+      'mini3-text':      'Ha egy <strong>hármas csoporthoz 2 követ teszel</strong>, bármely kijátszott követ odaadhatod bármely játékosnak – feltéve, hogy nem sérül egyetlen szabály sem. Az a játékos <strong>nem teheti azonnal vissza</strong> a követ.',
+      'mini4-title':     'A Páratlan szabály',
+      'mini4-text':      '<strong>Játékonként egyszer</strong> lerakhatod a <strong>páratlan</strong> (pl. 3–5–7) vagy <strong>páros</strong> (pl. 6–8–10) sorozatot.',
+      'meetup-title':    'Rummikub Zürich találkozó 🇨🇭',
+      'meetup-p1':       'Szereted a Rummikubot – vagy mindig is meg akartad tanulni? Csatlakozz a zürichi csoporthoz kellemes játékestekre! Mindenkit várunk – kezdőket, családokat, barátokat.',
+      'meetup-p2':       '📅 Kéthetente<br>📍 Mini Café Bar, Bleicherweg 62, 8001 Zürich<br>🎯 Közösség építése – és később talán mini tornák!',
+      'meetup-p3':       'Hozd a saját készleted, vagy csak gyere kíváncsian és mosolyogva.',
+      'meetup-link':     'Csatlakozás a Meetupon →',
+      'footer-text':     'Online játék:',
+    },
+    pl: {
+      'subtitle':        'Szybki przewodnik po zasadach',
+      'std-heading':     'Zasady standardowe 🇨🇭',
+      'mini-heading':    'Zasady MINI ☕️',
+      'gallery-heading': 'Wieczór gier 📸',
+      'badge-run':       'Sekwencja',
+      'badge-group':     'Grupa',
+      'badge-start':     'Pierwsze wyjście',
+      'run-title':       'Ten sam kolor, kolejne liczby',
+      'run-text':        '3 lub więcej liczb <strong>pod rząd w tym samym kolorze</strong>.',
+      'group-title':     'Ta sama liczba, różne kolory',
+      'group-text':      '3 lub 4 kamienie z <strong>tą samą liczbą, ale różnymi kolorami</strong>.',
+      'first-title':     'Minimum 30 punktów',
+      'first-text':      'W <strong>pierwszej turze</strong> musisz zagrać kamienie o łącznej wartości <strong>co najmniej 30 punktów</strong>, używając tylko kamieni ze swojego stojaka.',
+      'mini1-title':     'Zasada Szybkości',
+      'mini1-text':      'Możesz <strong>natychmiast zagrać kamień</strong>, który właśnie dobrałeś.',
+      'mini2-title':     'Zasada Dubletów',
+      'mini2-text':      'Na <strong>początku gry</strong> możesz ogłosić swoje dublety i <strong>wymienić je z innymi graczami</strong>.',
+      'mini3-title':     'Zasada Oddania',
+      'mini3-text':      'Jeśli <strong>dodajesz 2 kamienie do grupy 3</strong>, możesz dać dowolny kamień ze stołu dowolnemu graczowi – pod warunkiem, że nie naruszasz zasad. Ten gracz <strong>nie może od razu odłożyć</strong> kamienia na miejsce.',
+      'mini4-title':     'Zasada Nieparzystych',
+      'mini4-text':      '<strong>Raz na grę</strong> możesz ułożyć sekwencję <strong>nieparzystych</strong> (np. 3–5–7) lub <strong>parzystych</strong> (np. 6–8–10).',
+      'meetup-title':    'Spotkanie Rummikub Zurych 🇨🇭',
+      'meetup-p1':       'Kochasz Rummikuba – albo zawsze chciałeś się nauczyć? Dołącz do nowej grupy w Zurychu na relaksujące wieczory gier! Wszyscy mile widziani – początkujący, rodziny, przyjaciele.',
+      'meetup-p2':       '📅 Co 2 tygodnie<br>📍 Mini Café Bar, Bleicherweg 62, 8001 Zürich<br>🎯 Budujemy ciepłą społeczność – a może później mini turnieje!',
+      'meetup-p3':       'Przynieś swój zestaw albo po prostu przyjdź z ciekawością i uśmiechem.',
+      'meetup-link':     'Dołącz na Meetup →',
+      'footer-text':     'Graj online na',
+    },
+  };
+
+  function setLang(lang) {
+    const dict = T[lang];
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      if (dict[el.dataset.i18n] !== undefined) el.textContent = dict[el.dataset.i18n];
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+      if (dict[el.dataset.i18nHtml] !== undefined) el.innerHTML = dict[el.dataset.i18nHtml];
+    });
+    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+    document.documentElement.lang = lang;
+  }
+
+  // Initialise with English
+  setLang('en');
 </script>
 </body>
 </html>
