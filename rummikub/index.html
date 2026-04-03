@@ -25,7 +25,7 @@
       background: #f5f0e8;
       color: #2c2c2c;
       min-height: 100vh;
-      padding: 0 300px 48px 24px;
+      padding: 0 24px 48px 24px;
     }
 
     /* ── Language bar ── */
@@ -79,18 +79,15 @@
 
     /* ── Meetup card ── */
     .meetup {
-      position: fixed;
-      top: 52px; /* below sticky lang bar */
-      right: 20px;
-      width: 260px;
-      z-index: 100;
+      max-width: 900px;
+      margin: 0 auto 48px;
       background: #fff;
       border: 1px solid rgba(200,136,10,0.35);
       border-radius: 14px;
-      padding: 16px 18px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.10);
-      font-size: 0.82rem;
-      line-height: 1.55;
+      padding: 22px 24px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      font-size: 0.92rem;
+      line-height: 1.65;
       color: #555;
     }
 
@@ -309,14 +306,7 @@
 
       h1 { font-size: 2rem; }
 
-      .meetup {
-        position: static;
-        width: 100%;
-        margin-bottom: 28px;
-        top: auto;
-      }
-
-      .cards { grid-template-columns: 1fr; }
+.cards { grid-template-columns: 1fr; }
 
       .gallery { grid-template-columns: 1fr; }
 
@@ -325,7 +315,6 @@
 
     /* ── Tablet ── */
     @media (min-width: 769px) and (max-width: 1100px) {
-      body { padding: 0 290px 48px 20px; }
       .gallery { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
@@ -341,16 +330,6 @@
   </div>
 
   <div class="page-content">
-
-    <!-- Fixed meetup card -->
-    <div class="meetup">
-      <div class="meetup-title"     data-i18n="meetup-title"></div>
-      <p data-i18n-html="meetup-p1"></p>
-      <p data-i18n-html="meetup-p2"></p>
-      <p data-i18n="meetup-p3"></p>
-      <a href="https://www.meetup.com/zurich-rummikub-meetup-group/?eventOrigin=home_groups_you_are_in"
-         target="_blank" data-i18n="meetup-link"></a>
-    </div>
 
     <!-- Header -->
     <h1>🎲 RUMMIKUB</h1>
@@ -437,6 +416,16 @@
       <a href="IMG_9543.jpeg" target="_blank"><img src="IMG_9543.jpeg" alt="Game night photo 3"></a>
     </div>
 
+    <!-- Meetup -->
+    <div class="meetup">
+      <div class="meetup-title"     data-i18n="meetup-title"></div>
+      <p data-i18n-html="meetup-p1"></p>
+      <p data-i18n-html="meetup-p2"></p>
+      <p data-i18n="meetup-p3"></p>
+      <a href="https://www.meetup.com/zurich-rummikub-meetup-group/?eventOrigin=home_groups_you_are_in"
+         target="_blank" data-i18n="meetup-link"></a>
+    </div>
+
     <footer>
       <span data-i18n="footer-text"></span> <a href="https://rummikub.com/play-online/" target="_blank">rummikub.com</a>
     </footer>
@@ -447,11 +436,12 @@
   // ── Tile strip ────────────────────────────────────────────────────────────
   const COLORS = ['red','blue','orange','black'];
   const strip  = document.getElementById('tileStrip');
-  [5,9,13].forEach(n => COLORS.forEach(c => {
+  const sample = [3, 7, 11, 5]; // one per colour
+  COLORS.forEach((c, i) => {
     const t = document.createElement('div');
-    t.className = `tile ${c}`; t.textContent = n;
+    t.className = `tile ${c}`; t.textContent = sample[i];
     strip.appendChild(t);
-  }));
+  });
   const joker = document.createElement('div');
   joker.className = 'tile joker'; joker.textContent = '★';
   strip.appendChild(joker);
@@ -480,7 +470,7 @@
       'mini3-text':      'If you <strong>provide 2 tiles to a group of 3</strong>, you may give any tile from the board to any player — provided you don\'t break any rule. That player <strong>cannot immediately replace</strong> that tile where it was.',
       'mini4-title':     'The Odd Rule',
       'mini4-text':      '<strong>Once per game</strong>, you may place a run of <strong>odds</strong> (e.g. 3–5–7) or <strong>evens</strong> (e.g. 6–8–10).',
-      'meetup-title':    'Rummikub Zürich Meet-up 🇨🇭',
+      'meetup-title':    'Next: join our Zürich Meet-up group! 🇨🇭',
       'meetup-p1':       'Do you love Rummikub — or have you always wanted to learn? Join Zürich\'s new group for relaxed, friendly game nights! Everyone welcome — beginners, families, friends.',
       'meetup-p2':       '📅 Every 2 weeks<br>📍 Mini Café Bar, Bleicherweg 62, 8001 Zürich<br>🎯 Build a warm community — and maybe later, fun mini tournaments!',
       'meetup-p3':       'Bring your own set, or just come with curiosity and a smile.',
@@ -509,7 +499,7 @@
       'mini3-text':      'Wenn du <strong>2 Steine zu einer Dreiergruppe beisteuert</strong>, darfst du jedem Spieler einen Stein vom Tisch geben – solange keine Regel verletzt wird. Dieser Spieler darf den Stein <strong>nicht sofort zurücklegen</strong>.',
       'mini4-title':     'Die Ungerade-Regel',
       'mini4-text':      '<strong>Einmal pro Spiel</strong> darfst du eine Folge aus <strong>ungeraden</strong> (z.B. 3–5–7) oder <strong>geraden</strong> Zahlen (z.B. 6–8–10) legen.',
-      'meetup-title':    'Rummikub Zürich Treffen 🇨🇭',
+      'meetup-title':    'Nächstes Treffen: Komm in unsere Zürcher Meetup-Gruppe! 🇨🇭',
       'meetup-p1':       'Liebst du Rummikub – oder wolltest du es schon immer lernen? Komm zu unserem Zürcher Spielabend! Alle willkommen – Anfänger, Familien, Freunde.',
       'meetup-p2':       '📅 Alle 2 Wochen<br>📍 Mini Café Bar, Bleicherweg 62, 8001 Zürich<br>🎯 Gemeinschaft aufbauen – und vielleicht später kleine Turniere!',
       'meetup-p3':       'Bring dein Spiel mit, oder komm einfach neugierig und mit einem Lächeln.',
@@ -538,7 +528,7 @@
       'mini3-text':      'Ha egy <strong>hármas csoporthoz 2 követ teszel</strong>, bármely kijátszott követ odaadhatod bármely játékosnak – feltéve, hogy nem sérül egyetlen szabály sem. Az a játékos <strong>nem teheti azonnal vissza</strong> a követ.',
       'mini4-title':     'A Páratlan szabály',
       'mini4-text':      '<strong>Játékonként egyszer</strong> lerakhatod a <strong>páratlan</strong> (pl. 3–5–7) vagy <strong>páros</strong> (pl. 6–8–10) sorozatot.',
-      'meetup-title':    'Rummikub Zürich találkozó 🇨🇭',
+      'meetup-title':    'Következő: csatlakozz a zürichi Meetup-csoporthoz! 🇨🇭',
       'meetup-p1':       'Szereted a Rummikubot – vagy mindig is meg akartad tanulni? Csatlakozz a zürichi csoporthoz kellemes játékestekre! Mindenkit várunk – kezdőket, családokat, barátokat.',
       'meetup-p2':       '📅 Kéthetente<br>📍 Mini Café Bar, Bleicherweg 62, 8001 Zürich<br>🎯 Közösség építése – és később talán mini tornák!',
       'meetup-p3':       'Hozd a saját készleted, vagy csak gyere kíváncsian és mosolyogva.',
@@ -567,7 +557,7 @@
       'mini3-text':      'Jeśli <strong>dodajesz 2 kamienie do grupy 3</strong>, możesz dać dowolny kamień ze stołu dowolnemu graczowi – pod warunkiem, że nie naruszasz zasad. Ten gracz <strong>nie może od razu odłożyć</strong> kamienia na miejsce.',
       'mini4-title':     'Zasada Nieparzystych',
       'mini4-text':      '<strong>Raz na grę</strong> możesz ułożyć sekwencję <strong>nieparzystych</strong> (np. 3–5–7) lub <strong>parzystych</strong> (np. 6–8–10).',
-      'meetup-title':    'Spotkanie Rummikub Zurych 🇨🇭',
+      'meetup-title':    'Następne: dołącz do naszej grupy Meetup w Zurychu! 🇨🇭',
       'meetup-p1':       'Kochasz Rummikuba – albo zawsze chciałeś się nauczyć? Dołącz do nowej grupy w Zurychu na relaksujące wieczory gier! Wszyscy mile widziani – początkujący, rodziny, przyjaciele.',
       'meetup-p2':       '📅 Co 2 tygodnie<br>📍 Mini Café Bar, Bleicherweg 62, 8001 Zürich<br>🎯 Budujemy ciepłą społeczność – a może później mini turnieje!',
       'meetup-p3':       'Przynieś swój zestaw albo po prostu przyjdź z ciekawością i uśmiechem.',
