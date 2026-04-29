@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>OG render</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap");
+</style>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:1200px;height:630px;overflow:hidden;background:#000;font-family:"JetBrains Mono",monospace;color:#f5f5f3}
+  body{
+    display:flex;align-items:center;justify-content:center;
+    background:
+      radial-gradient(800px 500px at 80% 0%, rgba(207,198,179,0.08), transparent 60%),
+      radial-gradient(700px 400px at 0% 100%, rgba(255,255,255,0.04), transparent 60%),
+      #000;
+  }
+  .card{
+    position:relative;
+    width:880px;height:555px;
+    border-radius:28px;
+    overflow:hidden;
+    isolation:isolate;
+    background:
+      repeating-linear-gradient(
+        90deg,
+        rgba(255,255,255,0.012) 0px,
+        rgba(255,255,255,0.012) 1px,
+        rgba(0,0,0,0) 1px,
+        rgba(0,0,0,0) 3px
+      ),
+      linear-gradient(135deg, #1d1d20 0%, #0e0e10 28%, #050506 55%, #131316 80%, #1c1c1f 100%),
+      #000;
+    border:1px solid rgba(255,255,255,0.06);
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.06) inset,
+      0 30px 60px -20px rgba(0,0,0,0.9),
+      0 12px 30px -12px rgba(0,0,0,0.7);
+  }
+  .card::before{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(115deg, transparent 35%, rgba(255,255,255,0.045) 48%, rgba(255,255,255,0.085) 50%, rgba(255,255,255,0.045) 52%, transparent 65%);
+    transform:translateX(10%);
+    pointer-events:none;
+    mix-blend-mode:screen;
+  }
+  .card-inner{
+    position:relative;z-index:2;
+    height:100%;
+    padding:50px 56px 46px;
+    display:flex;flex-direction:column;justify-content:space-between;
+  }
+  .card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:24px}
+  .brand{font-size:18px;color:#9a9a96;line-height:1.4}
+  .brand b{display:block;color:#f5f5f3;font-weight:500;letter-spacing:0.22em;font-size:18px;margin-bottom:8px}
+  .brand b .dot{display:inline-block;width:11px;height:11px;border-radius:50%;background:#a8d399;box-shadow:0 0 0 6px rgba(168,211,153,0.15);margin-right:14px;vertical-align:2px}
+  .brand .second{letter-spacing:0.28em;font-size:16px;color:#9a9a96}
+
+  .portrait{
+    width:130px;height:130px;border-radius:50%;
+    overflow:hidden;background:#111;flex:0 0 auto;
+    box-shadow:
+      0 0 0 2px rgba(255,255,255,0.18),
+      0 0 0 8px rgba(0,0,0,0.6),
+      0 12px 30px rgba(0,0,0,0.6),
+      inset 0 1px 0 rgba(255,255,255,0.15);
+  }
+  .portrait img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(0.15) contrast(1.05) brightness(0.98)}
+
+  .card-mid{margin:auto 0 0}
+  .card-name{
+    font-family:"Fraunces",Georgia,serif;
+    font-weight:400;font-size:78px;line-height:1;letter-spacing:-0.01em;color:#fff;
+    text-shadow:0 1px 0 rgba(0,0,0,0.6),0 -1px 0 rgba(255,255,255,0.06);
+  }
+  .card-name .suffix{font-family:"JetBrains Mono",monospace;font-size:24px;color:#9a9a96;text-transform:uppercase;letter-spacing:0.22em;margin-left:18px;vertical-align:18px;text-shadow:none}
+  .card-tag{font-size:18px;color:#9a9a96;letter-spacing:0.06em;margin-top:24px}
+  .card-tag .sep{color:#5a5a58;margin:0 12px}
+
+  .card-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:34px;gap:32px}
+  .card-mark{font-family:"Fraunces",serif;font-size:24px;color:#f5f5f3;font-style:italic;opacity:0.75}
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="card-inner">
+      <div class="card-top">
+        <div class="brand">
+          <b><span class="dot"></span>WANT TO PARTNER? LET'S TALK</b>
+          <span class="second">ZÜRICH · PARIS · LONDON</span>
+        </div>
+        <div class="portrait"><img src="portrait.jpg" alt=""/></div>
+      </div>
+      <div class="card-mid">
+        <h1 class="card-name">Gilles Daniel<span class="suffix">, PhD</span></h1>
+        <p class="card-tag">vibe coder<span class="sep">·</span>meditation practitioner</p>
+      </div>
+      <div class="card-bottom">
+        <p class="card-tag" style="margin:0">consultant<span class="sep">·</span>children coach</p>
+        <div class="card-mark">gd · 2026</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
