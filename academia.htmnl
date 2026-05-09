@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting...</title>
+
+  <!-- Immediate redirect -->
+  <meta http-equiv="refresh" content="0; url=https://scholar.google.com/citations?hl=en&view_op=list_works&gmla=AIqSsVvjcD7UlpLvWIXdm0OHtJ4w2ZmYRWouXL-_mFSCEMf-GT0ZjP2O2YZL0nxg1SeAWkLsuO78cBLfouNNPg&user=feYvEa0AAAAJ">
+
+  <!-- Canonical redirect for SEO -->
+  <link rel="canonical" href="https://scholar.google.com/citations?hl=en&view_op=list_works&gmla=AIqSsVvjcD7UlpLvWIXdm0OHtJ4w2ZmYRWouXL-_mFSCEMf-GT0ZjP2O2YZL0nxg1SeAWkLsuO78cBLfouNNPg&user=feYvEa0AAAAJ">
+
+  <script>
+    // Fallback redirect (in case meta refresh is ignored)
+    window.location.replace("https://scholar.google.com/citations?hl=en&view_op=list_works&gmla=AIqSsVvjcD7UlpLvWIXdm0OHtJ4w2ZmYRWouXL-_mFSCEMf-GT0ZjP2O2YZL0nxg1SeAWkLsuO78cBLfouNNPg&user=feYvEa0AAAAJ");
+  </script>
+</head>
+<body>
+  <p>Redirecting to <a href="https://scholar.google.com/citations?hl=en&view_op=list_works&gmla=AIqSsVvjcD7UlpLvWIXdm0OHtJ4w2ZmYRWouXL-_mFSCEMf-GT0ZjP2O2YZL0nxg1SeAWkLsuO78cBLfouNNPg&user=feYvEa0AAAAJ">Dr. Gilles Daniel</a>...</p>
+</body>
+</html>
