@@ -367,10 +367,21 @@
 
     .card-bottom {
       display: flex;
-      align-items: center;
+      align-items: flex-end;
       justify-content: space-between;
       margin-top: 22px;
       gap: 24px;
+    }
+
+    .left-stack {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+    }
+
+    .left-stack .card-tag {
+      margin: 0;
     }
 
     .card-bottom .card-tag-bottom {
@@ -805,6 +816,10 @@
         gap: 14px;
       }
 
+      .left-stack {
+        gap: 4px;
+      }
+
       .card-mark {
         font-size: 12px;
         gap: 4px;
@@ -955,11 +970,13 @@
 
         <div class="card-mid">
           <h1 class="card-name">Gilles Daniel<span class="suffix"> PhD</span></h1>
-          <p class="card-tag">vibe coder<span class="sep">·</span>meditation practitioner</p>
         </div>
 
         <div class="card-bottom">
-          <p class="card-tag card-tag-bottom">consultant<span class="sep">·</span>playball coach</p>
+          <div class="left-stack">
+            <p class="card-tag">vibe coder<span class="sep">·</span>meditation practitioner</p>
+            <p class="card-tag card-tag-bottom">consultant<span class="sep">·</span>playball coach</p>
+          </div>
           <div class="card-mark">
             <a class="card-scholar" href="https://gilzh.github.io/academia" target="_blank" rel="noopener" aria-label="Academic profile">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -982,10 +999,9 @@
         <span class="val mono-val">+41 76 399 95 71</span>
         <span class="arrow">→</span>
       </a>
-      <a class="row" href="/cdn-cgi/l/email-protection#f196989d9d9482df95909f98949db1969c90989ddf929e9c">
+      <a class="row" id="emailRow" href="#">
         <span class="label">Email</span>
-        <span class="val mono-val"><span class="__cf_email__"
-            data-cfemail="3f585653535a4c115b5e51565a537f58525e5653115c5052"><span class="__cf_email__" data-cfemail="e7808e8b8b8294c98386898e828ba7808a868e8bc984888a">[email&#160;protected]</span></span></span>
+        <span class="val mono-val" id="emailVal"></span>
         <span class="arrow">→</span>
       </a>
       <a class="row" href="https://www.linkedin.com/in/gillesdaniel" target="_blank" rel="noopener">
@@ -1074,7 +1090,6 @@
 
   <div class="toast" id="toast">Copied</div>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
   <script>
     // ---------- Portrait: try several known paths, fallback to monogram ----------
     (function () {
@@ -1100,6 +1115,15 @@
           correctLevel: QRCode.CorrectLevel.M
         });
       }
+    })();
+
+    // ---------- Email (assemble at runtime) ----------
+    (function () {
+      const e = 'gilles.daniel' + String.fromCharCode(64) + 'gmail.com';
+      const a = document.getElementById('emailRow');
+      const v = document.getElementById('emailVal');
+      if (a) a.href = 'mailto:' + e;
+      if (v) v.textContent = e;
     })();
 
     // ---------- vCard ----------
