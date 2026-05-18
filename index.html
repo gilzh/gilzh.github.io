@@ -736,12 +736,22 @@
       margin-top: 18px;
       border: 1px solid var(--line);
       border-radius: var(--radius);
-      padding: 18px;
+      padding: 14px 16px;
       display: flex;
       align-items: center;
-      gap: 18px;
+      gap: 16px;
       background: linear-gradient(180deg, rgba(255, 255, 255, 0.015), transparent);
     }
+    .qr-hint{
+      font-family:"JetBrains Mono",monospace;
+      font-size:10px;color:var(--ink-dim);
+      text-transform:uppercase;letter-spacing:0.22em;
+      margin:0;
+    }
+    .qr-cta{
+      white-space:nowrap;
+    }
+    .qr-wrap .qr{margin-left:auto}
     .scholar{
       margin-left:auto;align-self:center;
       display:flex;flex-direction:column;align-items:center;gap:6px;
@@ -971,9 +981,15 @@
       }
 
       .qr-wrap {
-        padding: 14px;
-        gap: 14px
+        padding: 12px;
+        gap: 12px;
       }
+      .qr-cta {
+        font-size: 10px;
+        letter-spacing: 0.16em;
+        padding: 12px 10px;
+      }
+      .qr-hint{display:none}
 
       .qr {
         width: 92px;
@@ -1196,36 +1212,17 @@
       </a>
     </nav>
 
-    <div class="actions fade d3">
-      <button class="btn primary" id="vcardBtn" type="button">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-          stroke-linejoin="round">
+    <div class="qr-wrap fade d3">
+      <button class="btn primary qr-cta" id="vcardBtn" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M12 5v14M5 12l7 7 7-7" />
         </svg>
         Save contact
       </button>
-      <button class="btn" id="shareBtn" type="button">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-          stroke-linejoin="round">
-          <circle cx="18" cy="5" r="3" />
-          <circle cx="6" cy="12" r="3" />
-          <circle cx="18" cy="19" r="3" />
-          <path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4" />
-        </svg>
-        Share card
-      </button>
-    </div>
-
-    <div class="qr-wrap fade d3">
       <div class="qr" id="qr" aria-label="QR code linking to this card"></div>
-      <div class="qr-text">
-        <p class="qr-title">Scan to share.</p>
-        <p class="qr-sub">Point your camera here<br />to open this card on any phone.</p>
-      </div>
-
     </div>
 
-    <div class="sec-h fade d4"><span>😎 WHT WILL WE VIBE CODE TOGETHER TODAY?</span><span class="rule"></span></div>
+    <div class="sec-h fade d4"><span>😎 WHAT WILL WE VIBE CODE TOGETHER TODAY?</span><span class="rule"></span></div>
     <div class="projects fade d4">
       <a class="proj" href="https://gilzh.github.io/NextMe" target="_blank" rel="noopener">
         <div class="thumb"><iframe src="https://gilzh.github.io/NextMe" loading="lazy" tabindex="-1"
@@ -1363,18 +1360,7 @@
       showToast('Contact saved');
     });
 
-    document.getElementById('shareBtn').addEventListener('click', async () => {
-      const data = {
-        title: 'Gilles Daniel, PhD',
-        text: 'Gilles Daniel — digital business card',
-        url: location.href
-      };
-      try {
-        if (navigator.share) { await navigator.share(data); return; }
-        await navigator.clipboard.writeText(location.href);
-        showToast('Link copied');
-      } catch (e) { /* user cancelled */ }
-    });
+    // (share button removed)
   </script>
 </body>
 
